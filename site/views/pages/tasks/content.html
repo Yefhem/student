@@ -1,0 +1,68 @@
+{{ define "content" }}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Rate</th>
+                        <th>State</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Rate</th>
+                        <th>State</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    {{ range $index,$value := .Tasks }}
+                    <tr>
+                        <td>{{ $value.Title }}</td>
+                        <td>{{ $value.Description }}</td>
+                        <td>{{ $value.Date.Day }}/{{ $value.Date.Month }}/{{ $value.Date.Year }}</td>
+                        <td>{{ $value.Rate }}</td>
+                        <td>
+                            {{ if eq $value.State.Canceled true }} 
+                                <span class="text-danger">Canceled <i class="fa fa-clock"></i></span>
+                            {{ end }}
+                            {{ if eq $value.State.Finished true }} 
+                                <span class="text-success">Finished <i class="fas fa-check"></i></span>
+                            {{ end }}
+                            {{ if eq $value.State.Continues true }} 
+                                <span class="text-warning">Continues <i class="fa fa-clock"></i></span>
+                            {{ end }}
+                        </td>
+                        <td>
+                            <a href="#" class="btn btn-info btn-sm btn-circle"><i class="fas fa-info-circle"></i></a>
+                            {{ if eq $value.State.Finished false }} 
+                            <a href="/edit-task/{{ $value.ID }}" class="btn btn-primary btn-sm btn-circle"><i class="fas fa-pencil"></i></a>
+                            {{ end }}
+                            <a href="/delete-task/{{ $value.ID }}" class="btn btn-danger btn-sm btn-circle"><i class="fas fa-trash"></i></a>
+                            <span> - </span>
+                            {{ if eq $value.State.Finished false}} 
+                            <a href="/status/completed/{{ $value.ID }}" class="btn btn-success btn-sm btn-circle"><i class="fas fa-check"></i></a>
+                            <a href="/status/canceled/{{ $value.ID }}" class="btn btn-danger btn-sm btn-circle"><i class="fas fa-x"></i></a>
+                            {{ end }}
+                        </td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{{ end }}

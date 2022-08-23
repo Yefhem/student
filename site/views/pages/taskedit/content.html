@@ -1,0 +1,132 @@
+{{ define "content" }}
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold text-primary">
+                    Edit Task
+                    <a href="/tasks" class="btn btn-outline-dark btn-sm float-right"><i class="fa fa-arrow-left"></i> Geri Dön</a>
+                </h4>
+            </div>
+            <div class="card-body">
+                <form action="/update-task/{{ .Task.ID }}" method="post">
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Title</label>
+                        <input name="title" type="text" class="form-control" id="exampleFormControlInput1" placeholder="lorem ipsum" value="{{ .Task.Title }}">
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Açıklama</label>
+                        <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3">{{ .Task.Description }}</textarea>
+                    </div>
+                    <hr>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1">Tarih</label>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="exampleFormControlSelect1">Gün</label>
+                                <select name="day" class="form-control" id="exampleFormControlSelect1">
+                                    {{ $currentDay := .Task.Date.Day }}
+                                    {{ range $index,$value := .DateNumber.Day }}
+                                    <option {{ if eq $currentDay $value }} selected {{ end }} value="{{ $value }}">{{ $value }}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleFormControlSelect1">Ay</label>
+                                <select name="month" class="form-control" id="exampleFormControlSelect1">
+                                    {{ $currentMonth := .Task.Date.Month }}
+                                    {{ range $index,$value := .DateNumber.Month }}
+                                        <option {{ if eq $currentMonth $value }} selected {{ end }} value="{{ $value }}">{{ $value }}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="exampleFormControlSelect1">Yıl</label>
+                                <select name="year" class="form-control" id="exampleFormControlSelect1">
+                                    {{ $currentYear := .Task.Date.Year }}
+                                    {{ range $index,$value := .DateNumber.Year }}
+                                        <option {{ if eq $currentYear $value }} selected {{ end }} value="{{ $value }}">{{ $value }}</option>
+                                    {{ end }}
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="exampleFormControlSelect1">Başlangıç Saati</label>
+                                <select name="starthour" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>  
+                                    <option value="06">06</option> 
+                                    <option value="07">07</option> 
+                                    <option value="08">08</option> 
+                                    <option value="09">09</option> 
+                                    <option value="10">10</option> 
+                                    <option value="11">11</option> 
+                                    <option value="12">12</option> 
+                                    <option value="13">13</option> 
+                                    <option value="14">14</option> 
+                                    <option value="15">15</option> 
+                                    <option value="16">16</option> 
+                                    <option value="17">17</option> 
+                                    <option value="18">18</option> 
+                                    <option value="19">19</option> 
+                                    <option value="20">20</option> 
+                                    <option value="21">21</option> 
+                                    <option value="22">22</option> 
+                                    <option value="23">23</option> 
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="exampleFormControlSelect1">Bitiş Saati</label>
+                                <select name="endhour" class="form-control" id="exampleFormControlSelect1">
+                                    <option value="00">00</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>  
+                                    <option value="06">06</option> 
+                                    <option value="07">07</option> 
+                                    <option value="08">08</option> 
+                                    <option value="09">09</option> 
+                                    <option value="10">10</option> 
+                                    <option value="11">11</option> 
+                                    <option value="12">12</option> 
+                                    <option value="13">13</option> 
+                                    <option value="14">14</option> 
+                                    <option value="15">15</option> 
+                                    <option value="16">16</option> 
+                                    <option value="17">17</option> 
+                                    <option value="18">18</option> 
+                                    <option value="19">19</option> 
+                                    <option value="20">20</option> 
+                                    <option value="21">21</option> 
+                                    <option value="22">22</option> 
+                                    <option value="23">23</option> 
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Rate</label>
+                        <select name="rate" class="form-control" id="exampleFormControlSelect1">
+                            <option value="3">Kritik</option>
+                            <option value="2">Orta</option>
+                            <option value="1">Düşük</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Accept</button>
+                </form>
+            </div>
+        </div>
+    
+    </div>
+</div>
+
+{{ end }}

@@ -1,0 +1,19 @@
+{{ define "logout-modal" }}
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content"  style="background-color: black;">
+            <div class="modal-header">
+                <h5 class="modal-title text-white" id="exampleModalLabel"><i class="fas fa-sign-out-alt"></i></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span class="text-white" aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body text-white">Çıkış yapmak istediğinizden emin misiniz? Mevcut oturumunuz sonlandırılacaktır.</div>
+            <div class="modal-footer">
+                <button class="btn btn-outline-light" type="button" data-dismiss="modal">İptal</button>
+                <a class="btn btn-danger" href="/admin/user-logout">Çıkış</a>
+            </div>
+        </div>
+    </div>
+</div>
+{{ end }}
